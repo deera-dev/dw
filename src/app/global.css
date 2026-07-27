@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Khusus web: React Native Web merender ke DOM asli, jadi font-family bisa
+   ikut cascade CSS biasa (beda dari native yang butuh patch Text.render di
+   globalFonts.ts). Pakai selector berspesifisitas rendah di sini supaya
+   utility class seperti "font-title" (Realistic Nature) tetap menang. */
+html,
+body,
+#root {
+  font-family: 'Sleggie', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+}

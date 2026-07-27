@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "DW",
+    "slug": "dw-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "dwapp",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "id.deera.dw",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "DW memakai lokasi untuk fitur Peta Berdua — lihat posisi pasangan & simpan tempat favorit berdua. Lokasi cuma dibagikan ke pasangan sendiri, dan bisa dimatikan kapan saja dari Pengaturan."
+      }
+    },
+    "android": {
+      "package": "id.deera.dw",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "versionCode": 2
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#1C3050"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "DW memakai lokasi untuk fitur Peta Berdua — lihat posisi pasangan & simpan tempat favorit berdua. Bisa dimatikan kapan saja dari Pengaturan.",
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
+        }
+      ],
+      "@rnmapbox/maps"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "760f9cfd-1d72-4853-983c-ee61216ddaa1"
+      }
+    },
+    "owner": "deeraindonesia"
+  }
+}
