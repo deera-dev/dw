@@ -226,6 +226,7 @@ function DailyPlanner() {
           </View>
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-2.5 rounded-xl border border-border p-3 text-ink"
             placeholder={`Menu ${mealType}...`}
             value={draft[mealType] ?? ''}

@@ -159,6 +159,7 @@ function SettingsForm({
             <Text className="mb-1 text-xs text-muted">Panjang siklus (hari)</Text>
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
               keyboardType="number-pad"
               value={cycleLength}
@@ -242,6 +243,7 @@ function ChecklistSection({ userId }: { userId: string }) {
           <View key={item.id} className="flex-row items-center gap-2 border-b border-border py-2">
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-lg border border-border px-2.5 py-1.5 text-sm text-ink"
               value={editingTitle}
               onChangeText={setEditingTitle}
@@ -290,6 +292,7 @@ function ChecklistSection({ userId }: { userId: string }) {
       <View className="mt-3 flex-row gap-2">
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="flex-1 rounded-xl border border-border p-3 text-sm text-ink"
           placeholder="Tambah item (mis. Siapkan tas rumah sakit)"
           value={title}
@@ -359,6 +362,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
           <View key={c.id} className="gap-2 border-b border-border py-2.5">
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="rounded-lg border border-border px-2.5 py-1.5 text-sm text-ink"
               placeholder="Nama"
               value={editName}
@@ -366,6 +370,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
             />
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="rounded-lg border border-border px-2.5 py-1.5 text-sm text-ink"
               placeholder="Peran (opsional)"
               value={editRole}
@@ -373,6 +378,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
             />
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="rounded-lg border border-border px-2.5 py-1.5 text-sm text-ink"
               placeholder="Nomor telepon"
               keyboardType="phone-pad"
@@ -410,6 +416,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
       <View className="mt-3 gap-2">
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="rounded-xl border border-border p-3 text-sm text-ink"
           placeholder="Nama (mis. dr. Aisyah)"
           value={name}
@@ -417,6 +424,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
         />
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="rounded-xl border border-border p-3 text-sm text-ink"
           placeholder="Peran (opsional, mis. Dokter Kandungan)"
           value={role}
@@ -424,6 +432,7 @@ function EmergencyContactsSection({ userId }: { userId: string }) {
         />
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="rounded-xl border border-border p-3 text-sm text-ink"
           placeholder="Nomor telepon"
           keyboardType="phone-pad"

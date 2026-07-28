@@ -24,7 +24,7 @@ export default function ScreenHeader({ icon, title, subtitle }: ScreenHeaderProp
       <View className="h-11 w-11 items-center justify-center rounded-full bg-primary-soft">
         <Ionicons name={icon} size={20} color={primary} />
       </View>
-      <View>
+      <View className="flex-1 shrink">
         <Text className="font-title text-xl font-bold text-ink">{title}</Text>
         {subtitle ? <Text className="text-xs text-muted">{subtitle}</Text> : null}
       </View>

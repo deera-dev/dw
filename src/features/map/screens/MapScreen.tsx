@@ -353,25 +353,31 @@ export default function MapScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
       >
         <Pressable
-          className={`flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
+          className={`shrink-0 flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
             categoryFilter === 'semua' ? 'border-primary bg-primary' : 'border-border'
           }`}
           onPress={() => setCategoryFilter('semua')}
         >
-          <Text className={`text-xs font-semibold ${categoryFilter === 'semua' ? 'text-white' : 'text-ink'}`}>
+          <Text
+            numberOfLines={1}
+            className={`text-xs font-semibold ${categoryFilter === 'semua' ? 'text-white' : 'text-ink'}`}
+          >
             Semua
           </Text>
         </Pressable>
         {PLACE_CATEGORIES.map((c) => (
           <Pressable
             key={c.value}
-            className={`flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
+            className={`shrink-0 flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
               categoryFilter === c.value ? 'border-primary bg-primary' : 'border-border'
             }`}
             onPress={() => setCategoryFilter(c.value)}
           >
             <Ionicons name={c.icon} size={13} color={categoryFilter === c.value ? '#fff' : '#8A8D94'} />
-            <Text className={`text-xs font-semibold ${categoryFilter === c.value ? 'text-white' : 'text-ink'}`}>
+            <Text
+              numberOfLines={1}
+              className={`text-xs font-semibold ${categoryFilter === c.value ? 'text-white' : 'text-ink'}`}
+            >
               {c.label}
             </Text>
           </Pressable>

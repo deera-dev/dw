@@ -8,16 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Semua lewat CSS variable (diset di theme.ts) supaya gampang ganti
-        // skema terang/gelap dari satu tempat, tanpa harus edit tiap layar.
-        ink: 'var(--color-ink)',
-        surface: 'var(--color-surface)',
-        card: 'var(--color-card)',
-        border: 'var(--color-border)',
-        subtle: 'var(--color-subtle)',
-        danger: 'var(--color-danger)',
-        success: 'var(--color-success)',
-        muted: 'var(--color-muted)',
+        // Warna dark-palette tetap (tidak ikut ganti per akun) di-hardcode
+        // langsung di sini (bukan CSS variable via vars()) karena ditemukan
+        // di beberapa HP Android, resolusi CSS variable runtime NativeWind
+        // kadang gagal (kemungkinan beda versi Hermes/react-native-css-interop
+        // antar device) dan bikin `text-ink` dkk fallback ke warna default
+        // (hitam) — padahal build & kode-nya identik di semua HP. Warna
+        // hardcode di compile time seperti ini tidak bergantung ke resolusi
+        // runtime sama sekali, jadi konsisten di semua device.
+        ink: '#EDEDED',
+        surface: '#0F1115',
+        card: '#1B1E24',
+        border: '#3C4048',
+        subtle: '#8A8D94',
+        danger: '#E5766D',
+        success: '#6FCB74',
+        muted: '#9AA0A8',
+        // primary/primary-dark/primary-soft TETAP lewat CSS variable karena
+        // memang beda tiap akun (Denny biru, Wulan rose) — nilainya di-set
+        // dinamis lewat vars() di theme.ts berdasarkan siapa yang login.
         primary: 'var(--color-primary)',
         'primary-dark': 'var(--color-primary-dark)',
         'primary-soft': 'var(--color-primary-soft)',

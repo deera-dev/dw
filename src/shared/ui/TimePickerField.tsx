@@ -35,6 +35,7 @@ export default function TimePickerField({
     return (
       <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
         className={`rounded-xl border border-border p-3 text-sm ${className}`}
         placeholder={`${placeholder} (HH:MM)`}
         value={value}

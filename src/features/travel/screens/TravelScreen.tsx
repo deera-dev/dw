@@ -126,6 +126,7 @@ function TravelChecklistSection({ plan, userId }: { plan: TravelPlan; userId: st
           <View key={item.id} className="flex-row items-center gap-2 py-1.5">
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-lg border border-border px-2 py-1 text-sm text-ink"
               value={editingTitle}
               onChangeText={setEditingTitle}
@@ -174,6 +175,7 @@ function TravelChecklistSection({ plan, userId }: { plan: TravelPlan; userId: st
       <View className="mt-2 flex-row gap-2">
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="flex-1 rounded-xl border border-border p-2.5 text-sm text-ink"
           placeholder="Tambah item persiapan"
           value={title}
@@ -297,6 +299,7 @@ function TravelPlanCard({ plan, userId }: { plan: TravelPlan; userId: string }) 
             <View className="mt-3 border-t border-border pt-3">
               <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
                 className="mb-2.5 rounded-xl border border-border p-3 text-sm text-ink"
                 placeholder="Destinasi"
                 value={editDestination}
@@ -307,6 +310,7 @@ function TravelPlanCard({ plan, userId }: { plan: TravelPlan; userId: string }) 
               </View>
               <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
                 className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
                 placeholder="Anggaran (Rp, opsional)"
                 keyboardType="numeric"
@@ -400,6 +404,7 @@ function AddTravelPlanForm({ userId }: { userId: string }) {
         <View className="mt-3">
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-2.5 rounded-xl border border-border p-3 text-sm text-ink"
             placeholder="Destinasi (mis. Bandung)"
             value={destination}
@@ -414,6 +419,7 @@ function AddTravelPlanForm({ userId }: { userId: string }) {
           </View>
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
             placeholder="Anggaran (Rp, opsional)"
             keyboardType="numeric"
@@ -469,6 +475,7 @@ function WishlistSection({ userId }: { userId: string }) {
           <View key={p.id} className="flex-row items-center gap-2 border-b border-border py-2">
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-lg border border-border px-2.5 py-1.5 text-sm text-ink"
               value={editingName}
               onChangeText={setEditingName}
@@ -503,6 +510,7 @@ function WishlistSection({ userId }: { userId: string }) {
       <View className="mt-3 flex-row gap-2">
         <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
           className="flex-1 rounded-xl border border-border p-3 text-sm text-ink"
           placeholder="Tambah tempat (mis. Raja Ampat)"
           value={placeName}

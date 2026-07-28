@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, Modal } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuthStore } from '../../auth/store/authStore';
 import { useAddReminder, useUpdateReminder } from '../hooks/useReminders';
@@ -9,7 +9,7 @@ import { useThemeVars } from '../../../shared/theme/useThemeVars';
 import { showAlert } from '../../../shared/lib/confirm';
 import { REMINDER_CATEGORY_LABEL, REMINDER_RECURRENCE_LABEL } from '../categoryLabels';
 import TimePickerField from '../../../shared/ui/TimePickerField';
-import ModalKeyboardWrapper from '../../../shared/ui/ModalKeyboardWrapper';
+import BottomSheetModal from '../../../shared/ui/BottomSheetModal';
 
 type Reminder = Tables<'reminders'>;
 
@@ -84,9 +84,7 @@ export default function AddReminderModal() {
   }
 
   return (
-    <Modal visible={form.modalVisible} animationType="slide" transparent>
-      <View className="flex-1 justify-end bg-black/40">
-      <ModalKeyboardWrapper>
+    <BottomSheetModal visible={form.modalVisible} onClose={form.closeModal}>
         <View style={themeVars} className="rounded-t-3xl bg-card p-5">
           <Text className="mb-4 font-title text-lg font-bold text-ink">
             {isEditing ? 'Edit Pengingat' : 'Pengingat Baru'}
@@ -94,6 +92,7 @@ export default function AddReminderModal() {
 
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Judul pengingat"
             value={form.title}
@@ -105,12 +104,15 @@ export default function AddReminderModal() {
             {CATEGORY_OPTIONS.map((c) => (
               <Pressable
                 key={c}
-                className={`rounded-full border px-3 py-2 ${
+                className={`shrink-0 rounded-full border px-3 py-2 ${
                   form.category === c ? 'border-primary bg-primary' : 'border-border'
                 }`}
                 onPress={() => form.setCategory(c)}
               >
-                <Text className={`text-xs ${form.category === c ? 'text-white' : 'text-ink'}`}>
+                <Text
+                  numberOfLines={1}
+                  className={`text-xs ${form.category === c ? 'text-white' : 'text-ink'}`}
+                >
                   {REMINDER_CATEGORY_LABEL[c]}
                 </Text>
               </Pressable>
@@ -122,12 +124,15 @@ export default function AddReminderModal() {
             {RECURRENCE_OPTIONS.map((r) => (
               <Pressable
                 key={r}
-                className={`rounded-full border px-3 py-2 ${
+                className={`shrink-0 rounded-full border px-3 py-2 ${
                   form.recurrence === r ? 'border-primary bg-primary' : 'border-border'
                 }`}
                 onPress={() => form.setRecurrence(r)}
               >
-                <Text className={`text-xs ${form.recurrence === r ? 'text-white' : 'text-ink'}`}>
+                <Text
+                  numberOfLines={1}
+                  className={`text-xs ${form.recurrence === r ? 'text-white' : 'text-ink'}`}
+                >
                   {REMINDER_RECURRENCE_LABEL[r]}
                 </Text>
               </Pressable>
@@ -149,9 +154,9 @@ export default function AddReminderModal() {
                   {form.dailyTimes.map((t) => (
                     <View
                       key={t}
-                      className="flex-row items-center gap-1.5 rounded-full border border-primary bg-primary-soft px-3 py-1.5"
+                      className="shrink-0 flex-row items-center gap-1.5 rounded-full border border-primary bg-primary-soft px-3 py-1.5"
                     >
-                      <Text className="text-xs font-semibold text-ink">{t}</Text>
+                      <Text numberOfLines={1} className="text-xs font-semibold text-ink">{t}</Text>
                       <Pressable hitSlop={6} onPress={() => form.removeDailyTime(t)}>
                         <Ionicons name="close-circle" size={14} color="#8A8D94" />
                       </Pressable>
@@ -184,8 +189,6 @@ export default function AddReminderModal() {
             </Pressable>
           </View>
         </View>
-      </ModalKeyboardWrapper>
-      </View>
-    </Modal>
+    </BottomSheetModal>
   );
 }

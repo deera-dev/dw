@@ -197,6 +197,7 @@ export default function BloodPressureSection() {
           <View className="mb-3 flex-row gap-2">
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-xl border border-border p-3 text-sm text-ink"
               placeholder="Sistol"
               keyboardType="number-pad"
@@ -205,6 +206,7 @@ export default function BloodPressureSection() {
             />
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-xl border border-border p-3 text-sm text-ink"
               placeholder="Diastol"
               keyboardType="number-pad"
@@ -213,6 +215,7 @@ export default function BloodPressureSection() {
             />
             <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
               className="flex-1 rounded-xl border border-border p-3 text-sm text-ink"
               placeholder="Nadi (opsional)"
               keyboardType="number-pad"

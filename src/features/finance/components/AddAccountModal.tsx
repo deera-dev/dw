@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, Modal } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import { useAuthStore } from '../../auth/store/authStore';
 import { useAddAccount, useUpdateAccount } from '../hooks/useFinance';
 import { useAccountFormStore } from '../store/accountFormStore';
 import { useThemeVars } from '../../../shared/theme/useThemeVars';
 import { showAlert } from '../../../shared/lib/confirm';
 import { ACCOUNT_TYPE_LABEL, ACCOUNT_TYPE_OPTIONS } from '../lib/accountBalance';
-import ModalKeyboardWrapper from '../../../shared/ui/ModalKeyboardWrapper';
+import BottomSheetModal from '../../../shared/ui/BottomSheetModal';
 
 export default function AddAccountModal() {
   const session = useAuthStore((s) => s.session);
@@ -46,9 +46,7 @@ export default function AddAccountModal() {
   }
 
   return (
-    <Modal visible={form.modalVisible} animationType="slide" transparent>
-      <View className="flex-1 justify-end bg-black/40">
-      <ModalKeyboardWrapper>
+    <BottomSheetModal visible={form.modalVisible} onClose={form.closeModal}>
         <View style={themeVars} className="rounded-t-3xl bg-card p-5">
           <Text className="mb-4 font-title text-lg font-bold text-ink">
             {isEditing ? 'Edit Akun' : 'Akun Baru'}
@@ -56,6 +54,7 @@ export default function AddAccountModal() {
 
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Nama akun (misal: BCA, Tabungan Rumah)"
             value={form.name}
@@ -67,12 +66,12 @@ export default function AddAccountModal() {
             {ACCOUNT_TYPE_OPTIONS.map((t) => (
               <Pressable
                 key={t}
-                className={`rounded-full border px-3 py-2 ${
+                className={`shrink-0 rounded-full border px-3 py-2 ${
                   form.type === t ? 'border-primary bg-primary' : 'border-border'
                 }`}
                 onPress={() => form.setType(t)}
               >
-                <Text className={`text-xs ${form.type === t ? 'text-white' : 'text-ink'}`}>
+                <Text numberOfLines={1} className={`text-xs ${form.type === t ? 'text-white' : 'text-ink'}`}>
                   {ACCOUNT_TYPE_LABEL[t]}
                 </Text>
               </Pressable>
@@ -81,6 +80,7 @@ export default function AddAccountModal() {
 
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Saldo awal (Rp, opsional)"
             keyboardType="numeric"
@@ -106,8 +106,6 @@ export default function AddAccountModal() {
             </Pressable>
           </View>
         </View>
-      </ModalKeyboardWrapper>
-      </View>
-    </Modal>
+    </BottomSheetModal>
   );
 }

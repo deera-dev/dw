@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, Modal } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import { useAuthStore } from '../../auth/store/authStore';
 import { useAccounts, useAddTransaction, useUpdateTransaction } from '../hooks/useFinance';
 import { useTransactionFormStore } from '../store/transactionFormStore';
 import { useThemeVars } from '../../../shared/theme/useThemeVars';
 import { showAlert } from '../../../shared/lib/confirm';
 import { ACCOUNT_TYPE_LABEL, type AccountType } from '../lib/accountBalance';
-import ModalKeyboardWrapper from '../../../shared/ui/ModalKeyboardWrapper';
+import BottomSheetModal from '../../../shared/ui/BottomSheetModal';
 
 export default function AddTransactionModal() {
   const session = useAuthStore((s) => s.session);
@@ -49,9 +49,7 @@ export default function AddTransactionModal() {
   }
 
   return (
-    <Modal visible={form.modalVisible} animationType="slide" transparent>
-      <View className="flex-1 justify-end bg-black/40">
-      <ModalKeyboardWrapper>
+    <BottomSheetModal visible={form.modalVisible} onClose={form.closeModal}>
         <View style={themeVars} className="rounded-t-3xl bg-card p-5">
           <Text className="mb-4 font-title text-lg font-bold text-ink">
             {isEditing ? 'Edit Transaksi' : 'Transaksi Baru'}
@@ -94,12 +92,15 @@ export default function AddTransactionModal() {
                 {accounts.map((acc) => (
                   <Pressable
                     key={acc.id}
-                    className={`rounded-full border px-3 py-2 ${
+                    className={`shrink-0 rounded-full border px-3 py-2 ${
                       form.accountId === acc.id ? 'border-primary bg-primary' : 'border-border'
                     }`}
                     onPress={() => form.setAccountId(acc.id)}
                   >
-                    <Text className={`text-xs ${form.accountId === acc.id ? 'text-white' : 'text-ink'}`}>
+                    <Text
+                      numberOfLines={1}
+                      className={`text-xs ${form.accountId === acc.id ? 'text-white' : 'text-ink'}`}
+                    >
                       {acc.name} · {ACCOUNT_TYPE_LABEL[acc.type as AccountType]}
                     </Text>
                   </Pressable>
@@ -110,6 +111,7 @@ export default function AddTransactionModal() {
 
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Jumlah (Rp)"
             keyboardType="numeric"
@@ -118,6 +120,7 @@ export default function AddTransactionModal() {
           />
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Kategori (misal: Makan, Transport)"
             value={form.category}
@@ -125,6 +128,7 @@ export default function AddTransactionModal() {
           />
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Catatan (opsional)"
             value={form.description}
@@ -146,8 +150,6 @@ export default function AddTransactionModal() {
             </Pressable>
           </View>
         </View>
-      </ModalKeyboardWrapper>
-      </View>
-    </Modal>
+    </BottomSheetModal>
   );
 }

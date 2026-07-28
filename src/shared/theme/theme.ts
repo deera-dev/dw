@@ -57,20 +57,19 @@ export function getThemeKey(email?: string | null): ThemeKey {
 // Style object berisi CSS variable, dipasang di View paling luar (dan juga di
 // tiap Modal lewat useThemeVars, karena Modal RN dirender di root terpisah).
 // Anak-anaknya bisa pakai class seperti bg-primary / text-ink / bg-card dst.
+// Cuma primary/primary-dark/primary-soft yang lewat CSS variable (vars()) —
+// warna itu genuinely beda tiap akun (Denny vs Wulan), jadi memang harus
+// resolve saat runtime. Warna dark-palette lain (ink, surface, card, dst)
+// SUDAH di-hardcode langsung di tailwind.config.js (bukan CSS variable lagi)
+// karena resolusi CSS variable NativeWind terbukti tidak konsisten di semua
+// device Android — di beberapa HP class seperti `text-ink` gagal resolve dan
+// fallback ke warna default (hitam), padahal build & kode-nya sama persis.
 export function getThemeVars(key: ThemeKey) {
   const c = themeColors[key];
   return vars({
     '--color-primary': c.primary,
     '--color-primary-dark': c.primaryDark,
     '--color-primary-soft': c.primarySoft,
-    '--color-ink': DARK_BASE.ink,
-    '--color-surface': DARK_BASE.surface,
-    '--color-card': DARK_BASE.card,
-    '--color-border': DARK_BASE.border,
-    '--color-subtle': DARK_BASE.subtle,
-    '--color-muted': DARK_BASE.muted,
-    '--color-danger': DARK_BASE.danger,
-    '--color-success': DARK_BASE.success,
   });
 }
 

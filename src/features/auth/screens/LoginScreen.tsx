@@ -60,6 +60,7 @@ export default function LoginScreen() {
 
       <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
         className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
         placeholder="Nama"
         autoCapitalize="none"
@@ -69,6 +70,7 @@ export default function LoginScreen() {
       />
       <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
         className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
         placeholder="Password"
         secureTextEntry

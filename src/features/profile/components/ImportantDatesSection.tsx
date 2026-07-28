@@ -104,6 +104,7 @@ export default function ImportantDatesSection() {
         <View className="mt-3 border-t border-border pt-3">
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-2.5 rounded-xl border border-border p-3 text-sm text-ink"
             placeholder="Judul (mis. Ulang Tahun Denny)"
             value={title}

@@ -38,6 +38,7 @@ export default function DatePickerField({
     return (
       <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
         className={`rounded-xl border border-border p-3 text-sm ${className}`}
         placeholder={`${placeholder} (YYYY-MM-DD)`}
         value={value}

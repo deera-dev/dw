@@ -79,6 +79,7 @@ function ProfileEditor() {
           <Text className="mb-1 text-xs text-muted">Nama</Text>
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
             value={name}
             onChangeText={setName}
@@ -235,6 +236,7 @@ function HealthTargetsEditor() {
           <Text className="mb-1 text-xs text-muted">Target minum harian (gelas, 1 gelas = {WATER_GLASS_ML} ml)</Text>
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
             keyboardType="number-pad"
             value={waterGlasses}
@@ -243,6 +245,7 @@ function HealthTargetsEditor() {
           <Text className="mb-1 text-xs text-muted">Target olahraga mingguan (menit)</Text>
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
             keyboardType="number-pad"
             value={exerciseMinutes}
@@ -342,6 +345,7 @@ function SmokingSettingsEditor() {
               <Text className="mb-1 text-xs text-muted">Harga per bungkus (Rp)</Text>
               <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
                 className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
                 keyboardType="number-pad"
                 value={packPrice}
@@ -350,6 +354,7 @@ function SmokingSettingsEditor() {
               <Text className="mb-1 text-xs text-muted">Jumlah batang per bungkus</Text>
               <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
                 className="mb-3 rounded-xl border border-border p-3 text-sm text-ink"
                 keyboardType="number-pad"
                 value={perPack}

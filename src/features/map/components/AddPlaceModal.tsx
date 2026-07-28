@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { useThemeVars } from '../../../shared/theme/useThemeVars';
 import { showAlert } from '../../../shared/lib/confirm';
 import { useAddSavedPlace } from '../hooks/useMap';
 import { PLACE_CATEGORIES, type PlaceCategory } from '../constants';
-import ModalKeyboardWrapper from '../../../shared/ui/ModalKeyboardWrapper';
+import BottomSheetModal from '../../../shared/ui/BottomSheetModal';
 
 // Koordinat pin baru diambil dari lokasi HP saat ini ketika modal dibuka —
 // paling masuk akal untuk kasus "lagi di resto ini, mau disimpan" tanpa perlu
@@ -64,14 +64,13 @@ export default function AddPlaceModal({
   }
 
   return (
-    <Modal visible={visible} animationType="slide" transparent>
-      <View className="flex-1 justify-end bg-black/40">
-      <ModalKeyboardWrapper>
+    <BottomSheetModal visible={visible} onClose={onClose}>
         <View style={themeVars} className="rounded-t-3xl bg-card p-5">
           <Text className="mb-4 font-title text-lg font-bold text-ink">Simpan Tempat Baru</Text>
 
           <TextInput
             style={{ color: '#EDEDED' }}
+            placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Nama tempat (mis. Kopi Kenangan)"
             value={name}
@@ -83,19 +82,22 @@ export default function AddPlaceModal({
             {PLACE_CATEGORIES.map((c) => (
               <Pressable
                 key={c.value}
-                className={`flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
+                className={`shrink-0 flex-row items-center gap-1.5 rounded-full border px-3 py-2 ${
                   category === c.value ? 'border-primary bg-primary' : 'border-border'
                 }`}
                 onPress={() => setCategory(c.value)}
               >
                 <Ionicons name={c.icon} size={13} color={category === c.value ? '#fff' : '#8A8D94'} />
-                <Text className={`text-xs ${category === c.value ? 'text-white' : 'text-ink'}`}>{c.label}</Text>
+                <Text numberOfLines={1} className={`text-xs ${category === c.value ? 'text-white' : 'text-ink'}`}>
+                  {c.label}
+                </Text>
               </Pressable>
             ))}
           </View>
 
           <TextInput
             style={{ color: '#EDEDED' }}
+            placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Catatan (opsional, mis. menu favorit)"
             value={notes}
@@ -120,8 +122,6 @@ export default function AddPlaceModal({
             </Pressable>
           </View>
         </View>
-      </ModalKeyboardWrapper>
-      </View>
-    </Modal>
+    </BottomSheetModal>
   );
 }

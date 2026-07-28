@@ -25,7 +25,7 @@ export default function SegmentedTabs({
             style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
             onPress={() => onChange(opt.value)}
           >
-            <Text className={`text-sm font-semibold ${active ? 'text-white' : 'text-ink'}`}>
+            <Text numberOfLines={1} className={`text-sm font-semibold ${active ? 'text-white' : 'text-ink'}`}>
               {opt.label}
             </Text>
           </Pressable>

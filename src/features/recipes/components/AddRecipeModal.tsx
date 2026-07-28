@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, Modal } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import { useAuthStore } from '../../auth/store/authStore';
 import { useAddRecipe, useUpdateRecipe } from '../hooks/useRecipes';
 import { useRecipeFormStore } from '../store/recipeFormStore';
 import { useThemeVars } from '../../../shared/theme/useThemeVars';
 import { showAlert } from '../../../shared/lib/confirm';
-import ModalKeyboardWrapper from '../../../shared/ui/ModalKeyboardWrapper';
+import BottomSheetModal from '../../../shared/ui/BottomSheetModal';
 
 export default function AddRecipeModal() {
   const session = useAuthStore((s) => s.session);
@@ -40,14 +40,13 @@ export default function AddRecipeModal() {
   }
 
   return (
-    <Modal visible={form.modalVisible} animationType="slide" transparent>
-      <View className="flex-1 justify-end bg-black/40">
-      <ModalKeyboardWrapper>
+    <BottomSheetModal visible={form.modalVisible} onClose={form.closeModal}>
         <View style={themeVars} className="rounded-t-3xl bg-card p-5">
           <Text className="mb-4 font-title text-lg font-bold text-ink">{isEditing ? 'Edit Resep' : 'Resep Baru'}</Text>
 
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Nama resep"
             value={form.name}
@@ -55,6 +54,7 @@ export default function AddRecipeModal() {
           />
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Bahan-bahan (opsional)"
             multiline
@@ -64,6 +64,7 @@ export default function AddRecipeModal() {
           />
           <TextInput
         style={{ color: '#EDEDED' }}
+        placeholderTextColor="#8A8D94"
             className="mb-3 rounded-xl border border-border p-4 text-base text-ink"
             placeholder="Cara membuat (opsional)"
             multiline
@@ -83,8 +84,6 @@ export default function AddRecipeModal() {
             </Pressable>
           </View>
         </View>
-      </ModalKeyboardWrapper>
-      </View>
-    </Modal>
+    </BottomSheetModal>
   );
 }

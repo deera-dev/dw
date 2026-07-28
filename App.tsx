@@ -1,7 +1,7 @@
 import './src/app/global.css';
 import './src/shared/lib/mapbox';
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
@@ -11,9 +11,11 @@ import { useAuthStore } from './src/features/auth/store/authStore';
 import RootNavigator from './src/app/RootNavigator';
 import { applyGlobalFonts } from './src/shared/theme/globalFonts';
 import { darkPalette } from './src/shared/theme/theme';
+import { useKeyboardBehavior } from './src/shared/hooks/useKeyboardBehavior';
 
 export default function App() {
   const init = useAuthStore((s) => s.init);
+  const keyboardBehavior = useKeyboardBehavior();
   const [fontsLoaded] = useFonts({
     RealisticNature: require('./assets/fonts/RealisticNature.otf'),
     Sleggie: require('./assets/fonts/Sleggie.ttf'),
@@ -38,8 +40,10 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style="light" />
-        <RootNavigator />
+        <StatusBar style="light" translucent={false} />
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={keyboardBehavior}>
+          <RootNavigator />
+        </KeyboardAvoidingView>
       </QueryClientProvider>
     </SafeAreaProvider>
   );
